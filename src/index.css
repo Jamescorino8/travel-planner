@@ -1,0 +1,28 @@
+div.hero {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+div.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.flex-container > div {
+    width: 100%;
+    height: 750px;
+}
+
+div.shortlist {
+    border: 1px solid black;
+}
+
+div.map {
+    border: 1px solid black;
+}
+
+div.itinerary {
+    border: 1px solid black;
+}
