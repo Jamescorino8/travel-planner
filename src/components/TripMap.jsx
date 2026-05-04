@@ -13,11 +13,15 @@ export default function TripMap({ events }) {
       style={{ height: '100%', width: '100%', border: '1px solid black' }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {events.filter(event => event.isConfirmed === true).map(event => (
+      {events.map(event => (
         <CircleMarker
           center={event.extendedProps.coords}
           radius={8}
-          pathOptions={{ color: '#E24B4A', fillColor: '#E24B4A', fillOpacity: 1 }}
+          pathOptions={
+            event.isConfirmed
+              ? { color: '#E24B4A', opacity: 0.85, fillColor: '#E24B4A', fillOpacity: 0.85 }
+              : { color: '#808080', opacity: 0.65, fillColor: '#808080', fillOpacity: 0.65 }
+          }
         >
           <Tooltip>{event.title}</Tooltip>
         </CircleMarker>
