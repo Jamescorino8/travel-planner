@@ -6,37 +6,43 @@ const EVENTS = [
   {
     id: 'i1',
     title: 'Gyeongbokgung Palace',
-    start: '2025-06-15T09:00:00',
-    end: '2025-06-15T11:00:00',
-    extendedProps: { location: 'Jongno-gu', coords: [37.5796, 126.9770] }
+    description: '',
+    start: '2025-06-23T09:00:00',
+    end: '2025-06-23T11:00:00',
+    extendedProps: { location: 'Jongno-gu', coords: [37.5796, 126.9770] },
+    isConfirmed: true
   },
   {
     id: 'i2',
     title: 'Bukchon Hanok Village',
-    start: '2025-06-15T11:30:00',
-    end: '2025-06-15T13:00:00',
-    extendedProps: { location: 'Gahoe-dong', coords: [37.5822, 126.9850] }
+    description: '',
+    start: '2025-06-23T11:30:00',
+    end: '2025-06-23T13:00:00',
+    extendedProps: { location: 'Gahoe-dong', coords: [37.5822, 126.9850] },
+    isConfirmed: false
   },
   {
-    id: 'i4',
+    id: 'i3',
     title: 'N Seoul Tower',
-    start: '2025-06-15T15:00:00',
-    end: '2025-06-15T17:00:00',
-    extendedProps: { location: 'Yongsan-gu', coords: [37.5512, 126.9882] }
+    description: '',
+    start: '2025-06-23T15:00:00',
+    end: '2025-06-23T17:00:00',
+    extendedProps: { location: 'Yongsan-gu', coords: [37.5512, 126.9882] },
+    isConfirmed: true
   },
 ]
 
 export default function TripView() {
     return (
         <>
-        <div className="hero">
+        <div className="header">
             <h1>Trip Planner</h1>
         </div>
         <div className="flex-container">
             <div className="shortlist">
                 <TripShortlist
                     events={EVENTS}
-                    
+                    // onEventCick={(id) => }
                 />
             </div>
             <div className="map">
@@ -47,7 +53,7 @@ export default function TripView() {
             <div className="itinerary">
                 <TripItinerary
                     events={EVENTS}
-                    onEventClick={(id) => setSelectedItinId(id)}
+                    // onEventClick={(id) => }
                 />
             </div>
         </div>

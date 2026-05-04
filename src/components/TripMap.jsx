@@ -10,10 +10,10 @@ export default function TripMap({ events }) {
     <MapContainer
       center={[37.5665, 126.9780]}
       zoom={12}
-      style={{ height: '100%', width: '100%' }}
+      style={{ height: '100%', width: '100%', border: '1px solid black' }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {events.map(event => (
+      {events.filter(event => event.isConfirmed === true).map(event => (
         <CircleMarker
           center={event.extendedProps.coords}
           radius={8}
