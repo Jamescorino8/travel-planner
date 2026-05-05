@@ -1,16 +1,14 @@
-export default function({ events }) {
+export default function({ events, onSelect }) {
     return (
         <div className="short-container">
             {events.filter(event => !event.isConfirmed).map(event => (
                 <div 
-                    key={event.id} 
-                    // className={`short-card ${selectedId === event.id ? 'selected' : ''}`}
-                    // onClick={() => onSelect(event.id)}
+                    key={event.id}
+                    className="short-card"
+                    onClick={() => onSelect(event.id)}
                 >
-                    <div className="short-card">
-                        <p>{event.title}</p>
-                        <p>{event.description}</p>
-                    </div>
+                    <p>{event.title}</p>
+                    <p>{event.description}</p>
                 </div>
             ))}
         </div>

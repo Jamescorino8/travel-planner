@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import TripMap from "../components/TripMap";
 import TripItinerary from "../components/TripItinerary"
 import TripShortlist from "../components/TripShortlist";
@@ -33,6 +34,7 @@ const EVENTS = [
 ]
 
 export default function TripView() {
+    const [selectedId, setSelectedId] = useState(null)
     return (
         <>
         <div className="header">
@@ -42,18 +44,19 @@ export default function TripView() {
             <div className="shortlist">
                 <TripShortlist
                     events={EVENTS}
-                    // onEventCick={(id) => }
+                    onSelect={setSelectedId}
                 />
             </div>
             <div className="map">
                 <TripMap
                     events={EVENTS}
+                    selectedId={selectedId}
                 />
             </div>
             <div className="itinerary">
                 <TripItinerary
                     events={EVENTS}
-                    // onEventClick={(id) => }
+                    onSelect={setSelectedId}
                 />
             </div>
         </div>

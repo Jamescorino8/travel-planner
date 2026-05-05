@@ -35,7 +35,13 @@ div.short-card {
 }
 
 div.short-card:hover {
-    background-color: hsl(0, 0%, 87%);
+    background-color: rgba(132, 132, 132, 0.488);
+}
+
+/* evenly space itinerary calendar header content */
+.fc-col-header-cell-cushion {
+    display: block;
+    width: 100%;
 }
 
 .itinerary {

@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 
-export default function TripItinerary({ events, onEventClick}) {
+export default function TripItinerary({ events, onSelect}) {
   const defaultEventColor = 'rgba(213, 0, 0, 0.65)'
   const hoverEventColor = 'rgba(160, 0, 0, 0.85)'
   const calendarRef = useRef(null)
@@ -25,7 +25,7 @@ export default function TripItinerary({ events, onEventClick}) {
         info.el.style.backgroundColor = defaultEventColor
         info.el.style.borderColor = defaultEventColor
       }}
-      eventClick={(info) => onEventClick(info.event.id)}
+      eventClick={(info) => onSelect(info.event.id)}
       headerToolbar={false}
       allDaySlot={false}
       dayHeaderContent={() => (
