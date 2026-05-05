@@ -5,7 +5,8 @@ export default function({ events, onSelect }) {
                 <div 
                     key={event.id}
                     className="short-card"
-                    onClick={() => onSelect(event.id)}
+                    onMouseEnter={() => onSelect(event.id)}
+                    onMouseLeave={() => onSelect(null)}
                 >
                     <p>{event.title}</p>
                     <p>{event.description}</p>
