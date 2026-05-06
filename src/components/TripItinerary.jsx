@@ -30,12 +30,17 @@ export default function TripItinerary({ events, toggleEvent, onHighlight}) {
       eventClick={(info) => toggleEvent(info.event.id)}
       headerToolbar={false}
       allDaySlot={false}
-      weekends={true}
       dayHeaderContent={() => (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <button onClick={() => { calendarRef.current.getApi().prev(); setCurrentDate(formatDate(calendarRef.current.getApi().getDate())) }}>← Prev</button>
             <button onClick={() => { calendarRef.current.getApi().gotoDate('2026-06-23'); setCurrentDate(formatDate(new Date(2026, 5, 23))) }}>{currentDate}</button>
             <button onClick={() => { calendarRef.current.getApi().next(); setCurrentDate(formatDate(calendarRef.current.getApi().getDate())) }}>Next →</button>
+        </div>
+      )}
+      eventContent={(info) => (
+        <div style={{ padding: '2px 4px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <div>{info.event.title}</div>
+          <div>{info.event.extendedProps.description}</div>
         </div>
       )}
       slotMinTime="07:00:00"
