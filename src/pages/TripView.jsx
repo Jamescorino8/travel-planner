@@ -11,7 +11,7 @@ const EVENTS = [
     start: '2026-06-23T09:00:00',
     end: '2026-06-23T11:00:00',
     extendedProps: { location: 'Jongno-gu', coords: [37.5796, 126.9770] },
-    isConfirmed: true
+    isConfirmed: false
   },
   {
     id: 'i2',
@@ -29,12 +29,18 @@ const EVENTS = [
     start: '2026-06-23T15:00:00',
     end: '2026-06-23T17:00:00',
     extendedProps: { location: 'Yongsan-gu', coords: [37.5512, 126.9882] },
-    isConfirmed: true
+    isConfirmed: false
   },
 ]
 
 export default function TripView() {
-    const [selectedId, setSelectedId] = useState(null)
+    const [events, setEvents] = useState(EVENTS)
+    const [highlightedId, setHighlightedId] = useState(null)
+
+    const toggleEvent = (id) => {
+        setEvents(prev => prev.map(e => e.id === id ? { ...e, isConfirmed: !e.isConfirmed } : e))
+    }
+
     return (
         <>
         <div className="header">
@@ -43,20 +49,22 @@ export default function TripView() {
         <div className="flex-container">
             <div className="shortlist">
                 <TripShortlist
-                    events={EVENTS}
-                    onSelect={setSelectedId}
+                    events={events}
+                    onHighlight={setHighlightedId}
+                    toggleEvent={toggleEvent}
                 />
             </div>
             <div className="map">
                 <TripMap
-                    events={EVENTS}
-                    selectedId={selectedId}
+                    events={events}
+                    highlightedId={highlightedId}
                 />
             </div>
             <div className="itinerary">
                 <TripItinerary
-                    events={EVENTS}
-                    onSelect={setSelectedId}
+                    events={events}
+                    onHighlight={setHighlightedId}
+                    toggleEvent={toggleEvent}
                 />
             </div>
         </div>

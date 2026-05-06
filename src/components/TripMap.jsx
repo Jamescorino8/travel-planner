@@ -6,7 +6,7 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 
 L.Marker.prototype.options.icon = L.icon({ iconUrl, shadowUrl })
 
-export default function TripMap({ events, selectedId }) {
+export default function TripMap({ events, highlightedId }) {
   const markerRefs = useRef({})
   useEffect(() => { // make while list item is selected
     Object.values(markerRefs.current).forEach(({ marker, baseOptions, hoverOptions }) => {
@@ -16,14 +16,14 @@ export default function TripMap({ events, selectedId }) {
         marker.closeTooltip()
       }
     })
-    if (!selectedId) return
-    const { marker, hoverOptions } = markerRefs.current[selectedId]
+    if (!highlightedId) return
+    const { marker, hoverOptions } = markerRefs.current[highlightedId]
     if (marker) {
       marker.setRadius(10)
       marker.setStyle({ color: hoverOptions.color, fillColor: hoverOptions.fillColor, opacity: hoverOptions.opacity, fillOpacity: hoverOptions.fillOpacity, weight: hoverOptions.weight })
       marker.openTooltip()
     }
-    }, [selectedId])
+    }, [highlightedId])
 
   return (
     <MapContainer
@@ -49,10 +49,15 @@ export default function TripMap({ events, selectedId }) {
             eventHandlers={{
               mouseover: e => { 
                 e.target.setRadius(10); 
-                e.target.setStyle({ color: hoverOptions.color, fillColor: hoverOptions.fillColor, opacity: hoverOptions.opacity, fillOpacity: hoverOptions.fillOpacity, weight: hoverOptions.weight }) },
+                e.target.setStyle({ color: hoverOptions.color, fillColor: hoverOptions.fillColor, opacity: hoverOptions.opacity, fillOpacity: hoverOptions.fillOpacity, weight: hoverOptions.weight }) 
+              },
               mouseout:  e => { 
                 e.target.setRadius(8); 
-                e.target.setStyle({ color: baseOptions.color, fillColor: baseOptions.fillColor, opacity: baseOptions.opacity, fillOpacity: baseOptions.fillOpacity, weight: baseOptions.weight }) },
+                e.target.setStyle({ color: baseOptions.color, fillColor: baseOptions.fillColor, opacity: baseOptions.opacity, fillOpacity: baseOptions.fillOpacity, weight: baseOptions.weight }) 
+              },
+              // click: e => {
+              //   toggleEvent(event.id)
+              // },
             }}
           >
             <Tooltip>{event.title}</Tooltip>
