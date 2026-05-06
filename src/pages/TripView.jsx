@@ -58,6 +58,7 @@ export default function TripView() {
                 <TripMap
                     events={events}
                     highlightedId={highlightedId}
+                    toggleEvent={toggleEvent}
                 />
             </div>
             <div className="itinerary">

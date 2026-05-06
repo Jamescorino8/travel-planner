@@ -6,7 +6,7 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 
 L.Marker.prototype.options.icon = L.icon({ iconUrl, shadowUrl })
 
-export default function TripMap({ events, highlightedId }) {
+export default function TripMap({ events, toggleEvent, highlightedId }) {
   const markerRefs = useRef({})
   useEffect(() => { // make while list item is selected
     Object.values(markerRefs.current).forEach(({ marker, baseOptions, hoverOptions }) => {
@@ -55,9 +55,9 @@ export default function TripMap({ events, highlightedId }) {
                 e.target.setRadius(8); 
                 e.target.setStyle({ color: baseOptions.color, fillColor: baseOptions.fillColor, opacity: baseOptions.opacity, fillOpacity: baseOptions.fillOpacity, weight: baseOptions.weight }) 
               },
-              // click: e => {
-              //   toggleEvent(event.id)
-              // },
+              click: e => {
+                toggleEvent(event.id)
+              },
             }}
           >
             <Tooltip>{event.title}</Tooltip>
